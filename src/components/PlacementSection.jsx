@@ -4,7 +4,6 @@ import { Briefcase, FileText, UserCheck, FolderCheck, Compass, CheckCircle2, Bui
 import Button from './ui/Button';
 import useAutoCarousel from '../hooks/useAutoCarousel';
 
-import { placedStudentsList as staticList } from '../data/placementData';
 import { fetchPlacements } from '../data/api';
 
 
@@ -42,11 +41,14 @@ function SteppedFlowCluster({ items, isRight = false, interval = 2600, cardSize 
   const [step, setStep] = useState(0);
 
   useEffect(() => {
+    if (!items || items.length === 0) return;
     const timer = setInterval(() => {
       setStep((prev) => (prev + 1) % items.length);
     }, interval);
     return () => clearInterval(timer);
-  }, [items.length, interval]);
+  }, [items?.length, interval]);
+
+  if (!items || items.length === 0) return null;
 
   const getSlot = (slotIdx) => {
     const innerX = isRight ? -190 : 190;
@@ -106,7 +108,7 @@ function SteppedFlowCluster({ items, isRight = false, interval = 2600, cardSize 
 export default function PlacementSection({ onOpenDemo }) {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isPillarsExpanded, setIsPillarsExpanded] = useState(false);
-  const [students, setStudents] = useState(staticList);
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     fetchPlacements()

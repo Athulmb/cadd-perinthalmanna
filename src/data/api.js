@@ -1,10 +1,18 @@
-import { DISCIPLINE_ORDER } from './coursesData';
-import { faqData, categories as faqCategories } from './faqData';
+import { categories as faqCategories } from './faqData';
+
+export const DISCIPLINE_ORDER = [
+  'Interior Design',
+  'Civil & Architectural CAD',
+  'BIM [Building Information Modelling]',
+  'Structural Design',
+  'Mechanical & Product Design',
+  'Electrical, Electronics & Automation',
+  'MEP Design & BIM',
+  'Project Planning & Management [PPM]',
+  'IT & Software Development'
+];
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
-
-// Simulated network delay to mimic real API calls
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const fetchCourses = async () => {
   try {

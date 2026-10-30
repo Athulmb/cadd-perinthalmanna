@@ -70,6 +70,14 @@ export default function Navbar({ onOpenDemo }) {
               Courses
             </Link>
             <Link
+              to="/placements"
+              className={`text-[13.5px] font-medium transition-colors ${
+                location.pathname === '/placements' ? textColorClass : textDimClass
+              }`}
+            >
+              Placements
+            </Link>
+            <Link
               to="/blog"
               className={`text-[13.5px] font-medium transition-colors ${
                 location.pathname === '/blog' ? textColorClass : textDimClass
@@ -144,6 +152,13 @@ export default function Navbar({ onOpenDemo }) {
             className="text-sm font-medium text-white/90 hover:text-white py-1"
           >
             Courses
+          </Link>
+          <Link
+            to="/placements"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-sm font-medium text-white/90 hover:text-white py-1"
+          >
+            Placements
           </Link>
           <Link
             to="/blog"

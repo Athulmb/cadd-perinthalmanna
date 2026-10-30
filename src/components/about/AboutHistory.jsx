@@ -144,7 +144,7 @@ export default function AboutHistory() {
 
         {/* Card 3: Employment */}
         <motion.div
-          onClick={() => navigate('/placements')}
+          onClick={() => navigate('/blog')}
           className="relative bg-[#1C2533] aspect-square overflow-hidden cursor-pointer p-10 flex flex-col"
           initial="idle"
           whileHover="hover"

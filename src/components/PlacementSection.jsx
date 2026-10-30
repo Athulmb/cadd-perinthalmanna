@@ -105,10 +105,30 @@ function SteppedFlowCluster({ items, isRight = false, interval = 2600, cardSize 
   );
 }
 
+const FALLBACK_STUDENTS = [
+  { id: 'placed-hanna', name: 'Hanna', role: 'Designer', company: 'Design & Architecture', img: '/images/placestudents/hanna.png', alt: 'Hanna - Placed as Designer' },
+  { id: 'placed-hijas', name: 'Hijas', role: 'BIM Modeler', company: 'BIM Consultancy', img: '/images/placestudents/hijas.png', alt: 'Hijas - Placed as BIM Modeler' },
+  { id: 'placed-jasmin', name: 'Jasmin', role: 'CAD Draftman', company: 'Engineering Consultancy', img: '/images/placestudents/jasmin.png', alt: 'Jasmin - Placed as CAD Draftman' },
+  { id: 'placed-jithin', name: 'Jithin', role: 'Site Engineer', company: 'Infrastructure & Construction', img: '/images/placestudents/jithin.png', alt: 'Jithin - Placed as Site Engineer' },
+  { id: 'placed-peter', name: 'Peter', role: 'Site Engineer', company: 'Construction & Civil', img: '/images/placestudents/peter.png', alt: 'Peter - Placed as Site Engineer' },
+  { id: 'placed-vipin', name: 'Vipin', role: 'Designer', company: 'Design Studio', img: '/images/placestudents/vipin.png', alt: 'Vipin - Placed as Designer' },
+  { id: 'placed-shahla', name: 'Shahla', role: 'CAD Designer', company: 'Architectural Consultancy', img: '/images/placestudents/shahla.png', alt: 'Shahla - Placed as CAD Designer' },
+  { id: 'placed-salman', name: 'Salman', role: 'Designer', company: 'Engineering Studio', img: '/images/placestudents/salman.png', alt: 'Salman - Placed as Designer' },
+  { id: 'placed-dilshad', name: 'Dilshad', role: 'MEP Designer', company: 'Focus MEP Solutions', img: '/images/placestudents/img_0058.png', alt: 'Dilshad - Placed as MEP Designer' },
+  { id: 'placed-ansar', name: 'Ansar', role: 'Draughtsman', company: 'Engineering Consultancy', img: '/images/placestudents/img_0059.png', alt: 'Ansar - Placed as Draughtsman' },
+  { id: 'placed-anshad', name: 'Anshad', role: 'Product Designer', company: 'Product Design Studio', img: '/images/placestudents/img_0060.png', alt: 'Anshad - Placed as Product Designer' },
+  { id: 'placed-ziyad', name: 'Ziyad', role: 'Draughtsman', company: 'Architectural Drafting', img: '/images/placestudents/img_0061.png', alt: 'Ziyad - Placed as Draughtsman' },
+  { id: 'placed-sreni', name: 'Sreni', role: '3D Designer', company: '3D Visualization Firm', img: '/images/placestudents/img_0063.jpeg', alt: 'Sreni - Placed as 3D Designer' },
+  { id: 'placed-vignesh', name: 'Vignesh', role: 'Product Designer', company: 'Industrial Design Firm', img: '/images/placestudents/img_0065.jpeg', alt: 'Vignesh - Placed as Product Designer' },
+  { id: 'placed-suhail', name: 'Suhail', role: 'Designer', company: 'SeoskoServ Private Limited', img: '/images/placestudents/img_0069.jpeg', alt: 'Suhail - Placed as Designer' },
+  { id: 'placed-ashique', name: 'Ashique', role: 'Designer', company: 'SeoskoServ Private Limited', img: '/images/placestudents/img_0070.png', alt: 'Ashique - Placed as Designer' },
+  { id: 'placed-shehin', name: 'Shehin', role: 'Interior Designer', company: 'Ajiro Solutions', img: '/images/placestudents/img_0071.png', alt: 'Shehin - Placed as Interior Designer' },
+];
+
 export default function PlacementSection({ onOpenDemo }) {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [isPillarsExpanded, setIsPillarsExpanded] = useState(false);
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState(FALLBACK_STUDENTS);
 
   useEffect(() => {
     fetchPlacements()
@@ -238,9 +258,8 @@ export default function PlacementSection({ onOpenDemo }) {
                   aria-expanded={isPillarsExpanded}
                 >
                   <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${
-                      isPillarsExpanded ? 'rotate-180' : 'rotate-0'
-                    }`}
+                    className={`w-3.5 h-3.5 transition-transform duration-300 ease-out ${isPillarsExpanded ? 'rotate-180' : 'rotate-0'
+                      }`}
                   />
                 </button>
               </div>
@@ -251,11 +270,10 @@ export default function PlacementSection({ onOpenDemo }) {
 
             {/* Cards 02, 03, 04 - Expandable on mobile with smooth transition, direct 2x2 grid on desktop */}
             <div
-              className={`transition-all duration-300 ease-in-out sm:contents ${
-                isPillarsExpanded
+              className={`transition-all duration-300 ease-in-out sm:contents ${isPillarsExpanded
                   ? 'grid grid-rows-[1fr] opacity-100 mt-2.5 sm:mt-0'
                   : 'grid grid-rows-[0fr] opacity-0 pointer-events-none sm:pointer-events-auto sm:opacity-100 sm:mt-0'
-              }`}
+                }`}
             >
               <div className="overflow-hidden sm:overflow-visible sm:contents">
                 <div className="flex flex-col gap-2.5 sm:contents">
@@ -333,9 +351,8 @@ export default function PlacementSection({ onOpenDemo }) {
             {students.map((student, idx) => (
               <div
                 key={student.id || student._id}
-                className={`snap-center shrink-0 w-[150px] sm:w-[168px] transition-opacity duration-300 ${
-                  idx === railIndex ? 'opacity-100' : 'opacity-70'
-                }`}
+                className={`snap-center shrink-0 w-[150px] sm:w-[168px] transition-opacity duration-300 ${idx === railIndex ? 'opacity-100' : 'opacity-70'
+                  }`}
               >
                 <PortraitCard
                   student={student}
@@ -358,9 +375,8 @@ export default function PlacementSection({ onOpenDemo }) {
                 type="button"
                 onClick={() => goToStudent(idx)}
                 aria-label={`Show ${student.name}`}
-                className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-                  idx === railIndex ? 'w-4 bg-[#E94B3C]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
-                }`}
+                className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${idx === railIndex ? 'w-4 bg-[#E94B3C]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
+                  }`}
               />
             ))}
           </div>

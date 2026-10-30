@@ -40,12 +40,12 @@ export default function AboutVision() {
       <div className="w-full flex flex-col lg:flex-row">
         
         {/* Left Side: Full Height Image */}
-        <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-[700px] relative" data-aos="fade-right">
+        <div className="w-full lg:w-[45%] min-h-[400px] lg:min-h-[700px] relative overflow-hidden" data-aos="fade-right">
           <img 
-            src="/why_us.jpg" 
-            alt="CADD Centre Campus"
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => { e.target.onerror = null; e.target.src = '/interior_render.jpg'; }}
+            src="/images/about/mission.jpg" 
+            alt="CADD Centre Mission - Empowering Innovation Through Engineering Design"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            onError={(e) => { e.target.onerror = null; e.target.src = '/why_us.jpg'; }}
           />
         </div>
         

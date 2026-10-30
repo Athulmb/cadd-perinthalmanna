@@ -23,16 +23,16 @@ const avatarColor = (name) => {
 function TestimonialCard({ item, isCenter = false }) {
   return (
     <div
-      className={`w-full max-w-[340px] sm:max-w-[380px] lg:w-[360px] min-h-[330px] sm:min-h-[360px] bg-white rounded-[20px] p-6 sm:p-7 flex flex-col items-center justify-between text-center transition-all duration-300 select-none ${
+      className={`w-full max-w-[340px] sm:max-w-[380px] lg:w-[360px] min-h-[330px] sm:min-h-[360px] rounded-[20px] p-6 sm:p-7 flex flex-col items-center justify-between text-center transition-all duration-300 select-none ${
         isCenter
-          ? 'border-2 border-[#E94B3C] shadow-xl'
-          : 'border border-[rgba(28,37,51,0.10)] shadow-2xs opacity-85'
+          ? 'bg-[#151D2A] border-2 border-[#E94B3C] shadow-[0_16px_40px_rgba(233,75,60,0.2)]'
+          : 'bg-[#0E1520]/95 border border-white/10 shadow-md opacity-85'
       }`}
     >
       {/* Avatar with Google badge. Avatars load eagerly: the carousel remounts cards
           constantly, and lazy-loading a 64px image just makes it pop in late. */}
       <div className="relative mb-2 shrink-0">
-        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-md bg-slate-100 flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/20 shadow-md bg-slate-800 flex items-center justify-center">
           {item.avatar ? (
             <img
               src={item.avatar}
@@ -52,7 +52,7 @@ function TestimonialCard({ item, isCenter = false }) {
             </span>
           )}
         </div>
-        <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white shadow-xs border border-slate-100 flex items-center justify-center p-0.5" title="Verified Google Review">
+        <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white shadow-xs border border-white/20 flex items-center justify-center p-0.5" title="Verified Google Review">
           <svg className="w-4 h-4" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -65,12 +65,12 @@ function TestimonialCard({ item, isCenter = false }) {
       {/* Name and Designation */}
       <div>
         <div className="flex items-center justify-center gap-1.5">
-          <h3 className="text-base sm:text-lg font-bold text-[#1C2533] leading-tight">
+          <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
             {item.name}
           </h3>
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
         </div>
-        <p className="text-xs text-[#E94B3C] font-semibold mt-0.5">
+        <p className="text-xs text-[#FF6B57] font-semibold mt-0.5">
           {item.role}
         </p>
       </div>
@@ -84,17 +84,17 @@ function TestimonialCard({ item, isCenter = false }) {
               className={`w-3.5 h-3.5 ${
                 i < item.rating
                   ? 'fill-[#FBBC05] text-[#FBBC05]'
-                  : 'fill-slate-200 text-slate-200'
+                  : 'fill-slate-700 text-slate-700'
               }`}
             />
           ))}
         </div>
-        <span className="text-xs font-black text-[#1C2533]">{item.rating.toFixed(1)}</span>
-        <span className="text-[10px] text-[#9299A3] font-medium">• {item.time}</span>
+        <span className="text-xs font-black text-white">{item.rating.toFixed(1)}</span>
+        <span className="text-[10px] text-slate-400 font-medium">• {item.time}</span>
       </div>
 
       {/* Review Quote */}
-      <p className="text-xs sm:text-[13px] text-[#687282] font-normal leading-relaxed max-w-xs line-clamp-6">
+      <p className="text-xs sm:text-[13px] text-slate-300 font-normal leading-relaxed max-w-xs line-clamp-6">
         "{item.quote}"
       </p>
     </div>
@@ -145,7 +145,7 @@ export default function Testimonials() {
 
   if (loading) {
     return (
-      <section className="py-24 bg-[#F5F4F1] flex justify-center items-center">
+      <section className="py-24 bg-[#080D14] flex justify-center items-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#E94B3C]"></div>
       </section>
     );
@@ -156,7 +156,10 @@ export default function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="relative py-10 sm:py-24 bg-[#F5F4F1] font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden">
+    <section id="testimonials" className="relative py-10 sm:py-24 bg-[#080D14] font-['Plus_Jakarta_Sans',sans-serif] overflow-hidden border-t border-white/5">
+      {/* Subtle ambient lighting */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#E94B3C]/5 blur-[120px] rounded-full pointer-events-none" />
+
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center justify-center">
         
         {/* SECTION HEADER */}
@@ -166,6 +169,7 @@ export default function Testimonials() {
             title="Words of Appreciation from Our Students"
             description="Verified Google reviews from engineering and architecture students trained at CADD Centre Perinthalmanna."
             align="center"
+            light={true}
           />
         </div>
 
@@ -278,15 +282,15 @@ export default function Testimonials() {
             type="button"
             onClick={handlePrev}
             aria-label="Previous Review"
-            className="w-9 h-9 rounded-[8px] bg-white shadow-2xs border border-[rgba(28,37,51,0.12)] text-[#1C2533] hover:text-[#E94B3C] hover:border-[#E94B3C]/40 hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+            className="w-9 h-9 rounded-[8px] bg-[#141A24] shadow-sm border border-white/10 text-white hover:text-[#E94B3C] hover:border-[#E94B3C]/50 hover:bg-[#1A2230] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
 
           {/* Indicator text & dots */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-[#1C2533]">
-              {activeIdx + 1} <span className="text-[#9299A3] font-normal">/ {total}</span>
+            <span className="text-xs font-bold text-white">
+              {activeIdx + 1} <span className="text-slate-400 font-normal">/ {total}</span>
             </span>
             <div className="hidden sm:flex items-center gap-1">
               {testimonials.map((_, idx) => (
@@ -295,7 +299,7 @@ export default function Testimonials() {
                   onClick={() => setActiveIdx(idx)}
                   aria-label={`Go to review ${idx + 1}`}
                   className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-                    idx === activeIdx ? 'w-4 bg-[#E94B3C]' : 'w-1.5 bg-slate-300 hover:bg-slate-400'
+                    idx === activeIdx ? 'w-4 bg-[#E94B3C]' : 'w-1.5 bg-slate-700 hover:bg-slate-500'
                   }`}
                 />
               ))}
@@ -306,7 +310,7 @@ export default function Testimonials() {
             type="button"
             onClick={handleNext}
             aria-label="Next Review"
-            className="w-9 h-9 rounded-[8px] bg-white shadow-2xs border border-[rgba(28,37,51,0.12)] text-[#1C2533] hover:text-[#E94B3C] hover:border-[#E94B3C]/40 hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
+            className="w-9 h-9 rounded-[8px] bg-[#141A24] shadow-sm border border-white/10 text-white hover:text-[#E94B3C] hover:border-[#E94B3C]/50 hover:bg-[#1A2230] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer"
           >
             <ChevronRight className="w-4 h-4" />
           </button>

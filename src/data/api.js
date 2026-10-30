@@ -12,14 +12,24 @@ export const DISCIPLINE_ORDER = [
   'IT & Software Development'
 ];
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://cadd-backend-perinthalmanna-production.up.railway.app';
+
+const safeJson = async (res) => {
+  if (!res.ok) {
+    throw new Error(`HTTP error ${res.status}`);
+  }
+  const contentType = res.headers.get('content-type');
+  if (contentType && !contentType.includes('application/json')) {
+    throw new Error(`Expected JSON but received ${contentType}`);
+  }
+  return res.json();
+};
 
 export const fetchCourses = async () => {
   try {
     const res = await fetch(`${API_BASE_URL}/courses`);
-    if (!res.ok) throw new Error('Failed to fetch courses');
-    const data = await res.json();
-    const mappedCourses = data.map(c => ({ ...c, id: c._id }));
+    const data = await safeJson(res);
+    const mappedCourses = Array.isArray(data) ? data.map(c => ({ ...c, id: c._id })) : [];
     
     // Extract unique disciplines from the courses
     const uniqueDisciplines = [...new Set(mappedCourses.map(c => c.discipline))];
@@ -35,7 +45,7 @@ export const fetchCourses = async () => {
 
     return { courses: mappedCourses, disciplines: uniqueDisciplines };
   } catch (err) {
-    console.error('API Error:', err);
+    console.error('API Error (Courses):', err);
     return { courses: [], disciplines: [] };
   }
 };
@@ -43,26 +53,21 @@ export const fetchCourses = async () => {
 export const fetchCourseById = async (id) => {
   try {
     const res = await fetch(`${API_BASE_URL}/courses/${id}`);
-    if (res.ok) {
-      const data = await res.json();
-      return { ...data, id: data._id };
-    }
+    const data = await safeJson(res);
+    return { ...data, id: data._id };
   } catch (err) {
-    console.error('API Error:', err);
+    console.error('API Error (Course detail):', err);
+    return null;
   }
-  return null;
 };
 
 export const fetchBlogs = async () => {
   try {
     const res = await fetch(`${API_BASE_URL}/blogs`);
-    if (res.ok) {
-      const data = await res.json();
-      return data.map(b => ({ ...b, id: b._id }));
-    }
-    return [];
+    const data = await safeJson(res);
+    return Array.isArray(data) ? data.map(b => ({ ...b, id: b._id })) : [];
   } catch (err) {
-    console.error('API Error:', err);
+    console.error('API Error (Blogs):', err);
     return [];
   }
 };
@@ -70,22 +75,20 @@ export const fetchBlogs = async () => {
 export const fetchBlogById = async (id) => {
   try {
     const res = await fetch(`${API_BASE_URL}/blogs/${id}`);
-    if (res.ok) {
-      const data = await res.json();
-      return { ...data, id: data._id };
-    }
+    const data = await safeJson(res);
+    return { ...data, id: data._id };
   } catch (err) {
-    console.error('API Error:', err);
+    console.error('API Error (Blog detail):', err);
+    return null;
   }
-  return null;
 };
 
 export const fetchFaqs = async () => {
   let dbFaqs = [];
   try {
     const res = await fetch(`${API_BASE_URL}/faqs`);
-    if (res.ok) {
-      const data = await res.json();
+    const data = await safeJson(res);
+    if (Array.isArray(data)) {
       dbFaqs = data.map(faq => ({
         id: faq._id,
         question: faq.question,
@@ -104,8 +107,8 @@ export const fetchTestimonials = async () => {
   let dbTestimonials = [];
   try {
     const res = await fetch(`${API_BASE_URL}/testimonials`);
-    if (res.ok) {
-      const data = await res.json();
+    const data = await safeJson(res);
+    if (Array.isArray(data)) {
       dbTestimonials = data.map(t => ({
         id: t._id,
         name: t.name,
@@ -126,11 +129,10 @@ export const fetchTestimonials = async () => {
 export const fetchPlacements = async () => {
   try {
     const res = await fetch(`${API_BASE_URL}/placements`);
-    if (!res.ok) throw new Error('Failed to fetch placements');
-    const data = await res.json();
-    return data.map(p => ({ ...p, id: p._id }));
+    const data = await safeJson(res);
+    return Array.isArray(data) ? data.map(p => ({ ...p, id: p._id })) : [];
   } catch (err) {
-    console.error('API Error:', err);
+    console.error('API Error (Placements):', err);
     return [];
   }
 };
@@ -138,11 +140,10 @@ export const fetchPlacements = async () => {
 export const fetchEvents = async () => {
   try {
     const res = await fetch(`${API_BASE_URL}/events`);
-    if (!res.ok) throw new Error('Failed to fetch events');
-    const data = await res.json();
-    return data.map(e => ({ ...e, id: e._id }));
+    const data = await safeJson(res);
+    return Array.isArray(data) ? data.map(e => ({ ...e, id: e._id })) : [];
   } catch (err) {
-    console.error('API Error:', err);
+    console.error('API Error (Events):', err);
     return [];
   }
 };
@@ -150,11 +151,10 @@ export const fetchEvents = async () => {
 export const fetchReels = async () => {
   try {
     const res = await fetch(`${API_BASE_URL}/reels`);
-    if (!res.ok) throw new Error('Failed to fetch reels');
-    const data = await res.json();
-    return data.map(r => ({ ...r, id: r._id }));
+    const data = await safeJson(res);
+    return Array.isArray(data) ? data.map(r => ({ ...r, id: r._id })) : [];
   } catch (err) {
-    console.error('API Error:', err);
+    console.error('API Error (Reels):', err);
     return [];
   }
 };

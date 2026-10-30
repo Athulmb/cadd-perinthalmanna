@@ -68,43 +68,44 @@ export default function AboutHistory() {
       {/* The 3 Cards Section - Framer Motion Layout Animations */}
       <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        {/* Card 1 */}
+        {/* Card 1: Student Achievements */}
         <motion.div
-          onClick={() => navigate('/blog')}
+          onClick={() => navigate('/placements')}
           className="relative bg-[#65764B] aspect-square overflow-hidden cursor-pointer p-10 flex flex-col"
           initial="idle"
           whileHover="hover"
           data-aos="fade-up" data-aos-delay="100"
         >
           <motion.img
-            variants={{ idle: { opacity: 0.6, scale: 1 }, hover: { opacity: 0, scale: 1.05 } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
-            src="/images/why-choose-us.jpg"
+            variants={{ idle: { opacity: 0.65, scale: 1 }, hover: { opacity: 0.15, scale: 1.05 } }}
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+            src="/images/about/student-achievements.jpg"
             alt="Student Achievements"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            onError={(e) => { e.target.onerror = null; e.target.src = '/images/why-choose-us.jpg'; }}
           />
           <motion.div
             variants={{ idle: { opacity: 0.8 }, hover: { opacity: 0 } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none"
           />
           <motion.h3
             variants={{ idle: { top: "65%" }, hover: { top: "12%" } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
             className="absolute left-10 text-3xl sm:text-4xl text-white font-normal leading-snug m-0 z-10"
           >
             Student<br />Achievements
           </motion.h3>
           <motion.div
             variants={{ idle: { opacity: 0.8 }, hover: { opacity: 1 } }}
-            transition={{ duration: 2.0 }}
+            transition={{ duration: 1.5 }}
             className="absolute bottom-10 left-10 z-10 flex items-center gap-2 text-white text-[11px] font-sans font-bold tracking-[0.2em]"
           >
             LEARN MORE <ArrowRightSmall className="w-4 h-4" />
           </motion.div>
         </motion.div>
 
-        {/* Card 2 */}
+        {/* Card 2: Accreditation */}
         <motion.div
           onClick={() => navigate('/courses')}
           className="relative bg-[#8A2E2C] aspect-square overflow-hidden cursor-pointer p-10 flex flex-col"
@@ -113,65 +114,65 @@ export default function AboutHistory() {
           data-aos="fade-up" data-aos-delay="200"
         >
           <motion.img
-            variants={{ idle: { opacity: 0.6, scale: 1 }, hover: { opacity: 0, scale: 1.05 } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
-            src="/why_us.jpg"
+            variants={{ idle: { opacity: 0.65, scale: 1 }, hover: { opacity: 0.15, scale: 1.05 } }}
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+            src="/images/about/accreditation.jpg"
             alt="Accreditation"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            onError={(e) => { e.target.onerror = null; e.target.src = '/interior_render.jpg'; }}
+            onError={(e) => { e.target.onerror = null; e.target.src = '/why_us.jpg'; }}
           />
           <motion.div
             variants={{ idle: { opacity: 0.8 }, hover: { opacity: 0 } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none"
           />
           <motion.h3
             variants={{ idle: { top: "70%" }, hover: { top: "12%" } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
             className="absolute left-10 text-3xl sm:text-4xl text-white font-normal leading-snug m-0 z-10"
           >
             Accreditation
           </motion.h3>
           <motion.div
             variants={{ idle: { opacity: 0.8 }, hover: { opacity: 1 } }}
-            transition={{ duration: 2.0 }}
+            transition={{ duration: 1.5 }}
             className="absolute bottom-10 left-10 z-10 flex items-center gap-2 text-white text-[11px] font-sans font-bold tracking-[0.2em]"
           >
             LEARN MORE <ArrowRightSmall className="w-4 h-4" />
           </motion.div>
         </motion.div>
 
-        {/* Card 3 */}
+        {/* Card 3: Employment */}
         <motion.div
-          onClick={() => navigate('/blog')}
+          onClick={() => navigate('/placements')}
           className="relative bg-[#1C2533] aspect-square overflow-hidden cursor-pointer p-10 flex flex-col"
           initial="idle"
           whileHover="hover"
           data-aos="fade-up" data-aos-delay="300"
         >
           <motion.img
-            variants={{ idle: { opacity: 0.6, scale: 1 }, hover: { opacity: 0, scale: 1.05 } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
-            src="/interior_render.jpg"
+            variants={{ idle: { opacity: 0.65, scale: 1 }, hover: { opacity: 0.15, scale: 1.05 } }}
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+            src="/images/about/employment.jpg"
             alt="Employment"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            onError={(e) => { e.target.onerror = null; e.target.src = '/why_us.jpg'; }}
+            onError={(e) => { e.target.onerror = null; e.target.src = '/interior_render.jpg'; }}
           />
           <motion.div
             variants={{ idle: { opacity: 0.8 }, hover: { opacity: 0 } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
-            className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none"
           />
           <motion.h3
             variants={{ idle: { top: "70%" }, hover: { top: "12%" } }}
-            transition={{ duration: 2.0, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }}
             className="absolute left-10 text-3xl sm:text-4xl text-white font-normal leading-snug m-0 z-10"
           >
             Employment
           </motion.h3>
           <motion.div
             variants={{ idle: { opacity: 0.8 }, hover: { opacity: 1 } }}
-            transition={{ duration: 2.0 }}
+            transition={{ duration: 1.5 }}
             className="absolute bottom-10 left-10 z-10 flex items-center gap-2 text-white text-[11px] font-sans font-bold tracking-[0.2em]"
           >
             LEARN MORE <ArrowRightSmall className="w-4 h-4" />
